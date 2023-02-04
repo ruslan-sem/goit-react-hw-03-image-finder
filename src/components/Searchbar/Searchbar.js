@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import css from './Searchbar.module.css';
 
-export const Searchbar = ({ onSubmit }) => {
+export const Searchbar = () => {
   return (
     <header className={css.Searchbar}>
       <form className={css.SearchForm}>
@@ -12,8 +12,8 @@ export const Searchbar = ({ onSubmit }) => {
         <input
           className={css.SearchFormInput}
           type="text"
-          autocomplete="off"
-          autofocus
+          autoComplete="off"
+          autoFocus
           placeholder="Search images and photos"
         />
       </form>
@@ -21,7 +21,7 @@ export const Searchbar = ({ onSubmit }) => {
   );
 };
 
-Searchbar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  //   state: PropTypes.object.isRequired,
-};
+// Searchbar.propTypes = {
+//   onSubmit: PropTypes.func.isRequired,
+//   //   state: PropTypes.object.isRequired,
+// };
