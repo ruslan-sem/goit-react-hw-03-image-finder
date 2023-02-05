@@ -28,11 +28,11 @@ export class App extends Component {
   };
 
   componentDidUpdate(_, prevState) {
-    const preQuery = prevState.query;
-    const prePage = prevState.page;
+    const prevQuery = prevState.query;
+    const prevPage = prevState.page;
     const { query, page } = this.state;
 
-    if (preQuery !== query || prePage !== page) {
+    if (prevQuery !== query || prevPage !== page) {
       this.setState({ isLoading: true });
       fetchApi(query, page)
         .then(json => {
