@@ -6,7 +6,7 @@ import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
-// import { Modal } from './Modal/Modal';
+import { Modal } from './Modal/Modal';
 
 export class App extends Component {
   state = {
@@ -25,6 +25,11 @@ export class App extends Component {
 
   handleClick = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
+  };
+
+  switchModal = event => {
+    const { id } = event.target.parentNode;
+    this.setState({ showModal: !this.state.showModal, id });
   };
 
   componentDidUpdate(_, prevState) {
@@ -64,11 +69,17 @@ export class App extends Component {
     return (
       <div className={css.App}>
         <Searchbar onSubmit={this.handleSubmin} />
-        <ImageGallery />
+        <ImageGallery state={this.state} switchModal={this.switchModal} />
         {this.state.isLoading && <Loader />}
         {this.state.photos.length > 0 &&
           this.state.photos.length < this.state.totalHits &&
           !this.state.isLoading && <Button onClick={this.handleClick} />}
+        {this.state.showModal && (
+          <Modal
+            bigImg={this.state.photos[this.state.id].bigImg}
+            switchModal={this.switchModal}
+          />
+        )}
       </div>
     );
   }
